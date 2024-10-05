@@ -59,6 +59,23 @@ vendas_df = vendas_df.rename(columns={'E-mail': 'E-mail do Cliente'})
 
 #Qual cliente comprou mais vezes? Metodo:
 
-freq_clientes = vendas_df['E-mail do Cliente'].value_counts()
+#freq_clientes = vendas_df['E-mail do Cliente'].value_counts()
 #display(freq_clientes)
-freq_clientes[:5].plot(title='Frequencia Clientes')
+#freq_clientes[:5].plot(title='Frequencia Clientes')
+
+#Qual cliente mais comprou na loja - Metodo:
+
+vendas_das_lojas = vendas_df.groupby('Nome da Loja').sum()
+vendas_das_lojas = vendas_das_lojas[['Quantidade Vendida']]
+#display(vendas_das_lojas)
+
+#Ordenar de maior para menor
+
+vendas_das_lojas = vendas_das_lojas.sort_values('Quantidade Vendida', ascending=False)
+#display(vendas_das_lojas)
+vendas_das_lojas[:5].plot(figsize=(15, 5), kind= 'bar')
+
+#filtrando
+maior_valor = vendas_das_lojas['Quantidade Vendida'].max()
+melhor_loja = vendas_das_lojas['Quantidade Vendida'].idxmax()
+print(maior_valor, melhor_loja)
