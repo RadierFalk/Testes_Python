@@ -1,6 +1,5 @@
 import pandas as pd
 from IPython.display import display
-import matplotlib
 
 #Funcionamento
 #Forma mais básica (muitas vezes não usaremos a forma mais básica)
@@ -61,5 +60,5 @@ vendas_df = vendas_df.rename(columns={'E-mail': 'E-mail do Cliente'})
 #Qual cliente comprou mais vezes? Metodo:
 
 freq_clientes = vendas_df['E-mail do Cliente'].value_counts()
-display(freq_clientes)
-freq_clientes.plot()
+#display(freq_clientes)
+freq_clientes[:5].plot(title='Frequencia Clientes')
